@@ -1,1 +1,3617 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWEGS 2025 - African Women Entrepreneurs Global Summit</title>
+    <script src="/_sdk/element_sdk.js"></script>
+    <link rel="icon" type="image/png" href="{% static 'logo.png' %}">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Open+Sans:wght@300;400;600;700&amp;family=Tajawal:wght@400;500;700&amp;family=Cairo:wght@300;400;600;700&amp;display=swap"
+        rel="stylesheet">
+    <style>
+        #home.hero-section {
+            background-image: url("{% static 'bg.png' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            /* optional: smooth parallax effect */
+            padding: 120px 20px;
+            /* spacing for content */
+            color: #fff;
+            /* ensures text stays visible */
+            position: relative;
+        }
+
+        /* Optional dark overlay for better readability */
+        #home.hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.45);
+            /* adjust darkness */
+            z-index: 1;
+        }
+
+
+
+        * Registration Section Styles */ .registration-section {
+            padding: 100px 50px;
+            width: 100%;
+            background: #ffffff;
+        }
+
+        .registration-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .registration-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            margin-top: 60px;
+        }
+
+        .registration-info {
+            padding: 50px;
+            background: #F9F9F9;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 138, 92, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 138, 92, 0.08);
+        }
+
+        .registration-info h3 {
+            font-size: 32px;
+            color: #008A5C;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .role-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .role-card {
+            padding: 20px;
+            border: 2px solid rgba(0, 138, 92, 0.15);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: #ffffff;
+        }
+
+        .role-card:hover {
+            border-color: #008A5C;
+            background: rgba(0, 138, 92, 0.05);
+            transform: translateY(-4px);
+        }
+
+        .role-card.active {
+            background: #008A5C;
+            border-color: #008A5C;
+            color: #ffffff;
+        }
+
+        .role-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .role-name {
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .role-description {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .benefits {
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 138, 92, 0.1);
+        }
+
+        .benefits h4 {
+            font-size: 18px;
+            color: #008A5C;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .benefit-check {
+            color: #C9A74A;
+            font-weight: bold;
+            min-width: 20px;
+        }
+
+        .registration-form {
+            padding: 50px;
+            background: #F9F9F9;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 138, 92, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 138, 92, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #2d2d2d;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        .required {
+            color: #C9A74A;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid rgba(0, 138, 92, 0.15);
+            border-radius: 10px;
+            font-size: 15px;
+            font-family: 'Open Sans', sans-serif;
+            transition: all 0.3s ease;
+            background: #ffffff;
+            color: #2d2d2d;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #008A5C;
+            box-shadow: 0 0 0 3px rgba(0, 138, 92, 0.1);
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: rgba(0, 138, 92, 0.5);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .participation-types {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border: 1px solid rgba(0, 138, 92, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #ffffff;
+        }
+
+        .checkbox-item:hover {
+            background: rgba(0, 138, 92, 0.05);
+            border-color: #008A5C;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #008A5C;
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+        }
+
+        .btn-submit,
+        .btn-reset {
+            flex: 1;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit {
+            background: #008A5C;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 138, 92, 0.25);
+        }
+
+        .btn-submit:hover {
+            background: #006B47;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 138, 92, 0.35);
+        }
+
+        .btn-reset {
+            background: transparent;
+            color: #008A5C;
+            border: 2px solid #008A5C;
+        }
+
+        .btn-reset:hover {
+            background: #008A5C;
+            color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .form-message {
+            margin-top: 20px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            font-size: 14px;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .form-message.success {
+            background: rgba(0, 138, 92, 0.1);
+            color: #008A5C;
+            border-left: 4px solid #008A5C;
+            display: block;
+        }
+
+        .form-message.error {
+            background: rgba(255, 100, 100, 0.1);
+            color: #cc0000;
+            border-left: 4px solid #cc0000;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .registration-container {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .role-selector {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .registration-section {
+                padding: 60px 25px;
+            }
+
+            .registration-info,
+            .registration-form {
+                padding: 35px 25px;
+            }
+
+            .role-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .participation-types {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+
+            .btn-submit,
+            .btn-reset {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .registration-section {
+                padding: 40px 20px;
+            }
+
+            .role-selector {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        body.rtl .checkbox-item {
+            flex-direction: row-reverse;
+        }
+
+        body.rtl .benefit-item {
+            flex-direction: row-reverse;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.8;
+            color: #2d2d2d;
+            background: #F9F9F9;
+            overflow-x: hidden;
+            width: 100%;
+            box-sizing: border-box;
+            transition: font-family 0.3s ease;
+        }
+
+        body.rtl {
+            direction: rtl;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        .website-container {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        body.rtl h1,
+        body.rtl h2,
+        body.rtl h3,
+        body.rtl h4,
+        body.rtl h5,
+        body.rtl h6 {
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        /* Navigation */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(15px);
+            height: 120px;
+            /* choose fixed height based on initial design */
+            padding: 0 10px;
+            /* remove padding since height is fixed */
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 138, 92, 0.08);
+            border-bottom: 1px solid rgba(0, 138, 92, 0.1);
+        }
+
+        .nav-logo img {
+            height: 50px;
+        }
+
+
+        .nav-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 25px 0px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #008A5C;
+            letter-spacing: 1px;
+            /* z-index: 1001; */
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1001;
+            background: none;
+            border: none;
+        }
+
+        .nav-toggle span {
+            width: 30px;
+            height: 3px;
+            background: #008A5C;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(9px, 9px);
+        }
+
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 45px;
+        }
+
+        .nav-links a {
+            color: #2d2d2d;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #008A5C;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #008A5C;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .lang-toggle {
+            background: transparent;
+            border: 2px solid #008A5C;
+            color: #008A5C;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .lang-toggle:hover {
+            background: #008A5C;
+            color: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 138, 92, 0.2);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            margin-top: 90px;
+            width: 100%;
+            min-height: 85%;
+            background: linear-gradient(135deg, #ffffff 0%, #F9F9F9 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 138, 92, 0.15) 0%, transparent 70%);
+            animation: float-slow 25s ease-in-out infinite;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 70%;
+            height: 180%;
+            background: radial-gradient(circle, rgba(201, 167, 74, 0.04) 0%, transparent 70%);
+            animation: float-slow 30s ease-in-out infinite reverse;
+        }
+
+        @keyframes float-slow {
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            50% {
+                transform: translate(-30px, -30px) rotate(3deg);
+            }
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            position: relative;
+            z-index: 1;
+            border-radius: 30px;
+            background: #1a1a1a56;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 138, 92, 0.08);
+            padding: 12px 40px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            color: #008A5C;
+            border: 1px solid rgba(0, 138, 92, 0.2);
+        }
+
+        .hero-title {
+            font-size: 80px;
+            margin-bottom: 30px;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #008A5C;
+            letter-spacing: -1px;
+        }
+
+        .hero-tagline {
+            font-size: 28px;
+            margin-bottom: 25px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: white;
+        }
+
+        .hero-description {
+            font-size: 20px;
+            margin-bottom: 60px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: white;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary,
+        .btn-secondary,
+        .btn-tertiary {
+            padding: 18px 50px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #008A5C;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 138, 92, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: #006B47;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 138, 92, 0.35);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #C9A74A;
+            border: 2px solid #C9A74A;
+        }
+
+        .btn-secondary:hover {
+            background: #C9A74A;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201, 167, 74, 0.3);
+        }
+
+        .btn-tertiary {
+            background: transparent;
+            color: #008A5C;
+            border: 2px solid #008A5C;
+        }
+
+        .btn-tertiary:hover {
+            background: #008A5C;
+            color: #ffffff;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 138, 92, 0.25);
+        }
+
+        /* Quick Facts */
+        .quick-facts {
+            background: #ffffff;
+            padding: 50px;
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.05);
+            width: 100%;
+        }
+
+        .facts-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            text-align: center;
+        }
+
+        .fact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .fact-icon {
+            font-size: 42px;
+            filter: grayscale(20%);
+        }
+
+        .fact-text {
+            font-weight: 600;
+            color: #008A5C;
+            font-size: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Countdown Timer */
+        .countdown-section {
+            background: linear-gradient(135deg, rgba(0, 138, 92, 0.05) 0%, rgba(201, 167, 74, 0.05) 100%);
+            padding: 80px 50px;
+            width: 100%;
+        }
+
+        .countdown-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-size: 42px;
+            color: #008A5C;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+
+        .countdown-timer {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 30px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .countdown-box {
+            background: #ffffff;
+            padding: 35px 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 138, 92, 0.1);
+            border: 1px solid rgba(0, 138, 92, 0.1);
+        }
+
+        .countdown-number {
+            font-size: 52px;
+            font-weight: 700;
+            color: #008A5C;
+            font-family: 'Playfair Display', serif;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 15px;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            padding: 100px 50px;
+            background: #ffffff;
+            width: 100%;
+        }
+
+        .intro-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .intro-text {
+            font-size: 24px;
+            line-height: 1.9;
+            color: #2d2d2d;
+            font-weight: 300;
+            margin-bottom: 50px;
+        }
+
+        .intro-highlight {
+            background: rgba(201, 167, 74, 0.08);
+            padding: 50px;
+            border-radius: 20px;
+            border-left: 4px solid #C9A74A;
+            text-align: left;
+        }
+
+        body.rtl .intro-highlight {
+            border-left: none;
+            border-right: 4px solid #C9A74A;
+            text-align: right;
+        }
+
+        .intro-highlight h3 {
+            font-size: 32px;
+            color: #008A5C;
+            margin-bottom: 25px;
+        }
+
+        .intro-highlight p {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 120px 50px;
+            width: 100%;
+        }
+
+        .section-white {
+            background: #ffffff;
+        }
+
+        .section-light {
+            background: #F9F9F9;
+        }
+
+        .section-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 56px;
+            color: #008A5C;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 20px;
+            color: #666;
+            font-weight: 300;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Five Core Themes Icons */
+        .themes-icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .theme-icon-card {
+            text-align: center;
+            padding: 40px 25px;
+            background: #ffffff;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 138, 92, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .theme-icon-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 138, 92, 0.15);
+            border-color: #008A5C;
+        }
+
+        .theme-icon-large {
+            font-size: 60px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .theme-icon-title {
+            font-size: 19px;
+            color: #008A5C;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .theme-icon-desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Video Section */
+        .video-section {
+            padding: 100px 50px;
+            background: #ffffff;
+            width: 100%;
+        }
+
+        .video-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .video-title {
+            font-size: 42px;
+            color: #008A5C;
+            margin-bottom: 25px;
+        }
+
+        .video-description {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 50px;
+            line-height: 1.8;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 550px;
+            background: linear-gradient(135deg, rgba(0, 138, 92, 0.05), rgba(201, 167, 74, 0.05));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+            border: 1px solid rgba(0, 138, 92, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover {
+            box-shadow: 0 20px 60px rgba(0, 138, 92, 0.15);
+            transform: scale(1.02);
+        }
+
+        .video-play-icon {
+            width: 90px;
+            height: 90px;
+            background: #008A5C;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .video-placeholder:hover .video-play-icon {
+            background: #006B47;
+            transform: scale(1.1);
+        }
+
+        .video-label {
+            font-size: 20px;
+            color: #008A5C;
+            font-weight: 600;
+        }
+
+        /* Speakers Grid */
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 50px;
+        }
+
+        .speaker-card {
+            background: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 138, 92, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .speaker-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 138, 92, 0.15);
+        }
+
+        .speaker-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(0, 138, 92, 0.05), rgba(201, 167, 74, 0.05));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 90px;
+        }
+
+        .speaker-info {
+            padding: 35px;
+        }
+
+        .speaker-name {
+            font-size: 26px;
+            color: #008A5C;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .speaker-title {
+            font-size: 16px;
+            color: #C9A74A;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .speaker-bio {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .quote-box {
+            background: rgba(201, 167, 74, 0.08);
+            padding: 40px;
+            border-left: 4px solid #C9A74A;
+            border-radius: 10px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        body.rtl .quote-box {
+            border-left: none;
+            border-right: 4px solid #C9A74A;
+        }
+
+        .quote-box p {
+            font-size: 19px;
+            font-style: italic;
+            color: #2d2d2d;
+            line-height: 1.8;
+        }
+
+        .quote-author {
+            font-weight: 600;
+            margin-top: 20px;
+            font-style: normal;
+            color: #C9A74A;
+            font-size: 16px;
+        }
+
+        /* Timeline */
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+        }
+
+        .timeline-item {
+            text-align: center;
+            padding: 40px 25px;
+            background: #ffffff;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 138, 92, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 138, 92, 0.1);
+            border-color: #008A5C;
+        }
+
+        .timeline-icon {
+            font-size: 50px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .timeline-title {
+            font-size: 20px;
+            color: #008A5C;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .timeline-description {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Outcomes */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .outcome-card {
+            background: #ffffff;
+            padding: 45px;
+            border-radius: 15px;
+            border-left: 4px solid #C9A74A;
+            border-right: 1px solid rgba(0, 138, 92, 0.1);
+            border-top: 1px solid rgba(0, 138, 92, 0.1);
+            border-bottom: 1px solid rgba(0, 138, 92, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        body.rtl .outcome-card {
+            border-left: 1px solid rgba(0, 138, 92, 0.1);
+            border-right: 4px solid #C9A74A;
+        }
+
+        .outcome-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 20px 50px rgba(0, 138, 92, 0.1);
+        }
+
+        body.rtl .outcome-card:hover {
+            transform: translateX(-10px);
+        }
+
+        .outcome-card h3 {
+            font-size: 22px;
+            color: #008A5C;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .outcome-card p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Partners */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+
+        .partner-logo {
+            height: 140px;
+            background: #ffffff;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            font-weight: 600;
+            color: #008A5C;
+            text-align: center;
+            padding: 25px;
+            border: 1px solid rgba(0, 138, 92, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 138, 92, 0.1);
+            border-color: #008A5C;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, #008A5C 0%, #006B47 100%);
+            padding: 100px 50px;
+            width: 100%;
+        }
+
+        .newsletter-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .newsletter-title {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #C9A74A;
+        }
+
+        .newsletter-description {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            line-height: 1.7;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 18px 30px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.15);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.25);
+            border-color: #C9A74A;
+        }
+
+        .newsletter-submit {
+            padding: 18px 45px;
+            background: #C9A74A;
+            color: #ffffff;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .newsletter-submit:hover {
+            background: #B8964A;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(201, 167, 74, 0.4);
+        }
+
+        .newsletter-message {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 15px;
+            display: none;
+        }
+
+        .newsletter-message.success {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            display: block;
+        }
+
+        .newsletter-message.error {
+            background: rgba(255, 100, 100, 0.3);
+            color: #ffffff;
+            display: block;
+        }
+
+        /* Chat Assistant */
+        .chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+        }
+
+        .chat-button {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #008A5C 0%, #006B47 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 138, 92, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .chat-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 138, 92, 0.5);
+        }
+
+        .chat-button-icon {
+            font-size: 32px;
+        }
+
+        .chat-window {
+            position: absolute;
+            top: -500px;
+            bottom: 90px;
+            right: 0;
+            width: 380px !important;
+            height: 550px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chat-window.active {
+            display: flex;
+        }
+
+        .chat-header {
+            background: linear-gradient(135deg, #008A5C 0%, #006B47 100%);
+            padding: 25px;
+            color: #ffffff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header-info h4 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .chat-header-info p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .chat-close {
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        .chat-close:hover {
+            opacity: 1;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 25px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #F9F9F9;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 15px 18px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.6;
+            animation: messageSlide 0.3s ease;
+        }
+
+        @keyframes messageSlide {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chat-message.assistant {
+            background: #008A5C;
+            color: #ffffff;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chat-message.user {
+            background: #e0e0e0;
+            color: #2d2d2d;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-quick-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .chat-quick-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chat-quick-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .chat-input-area {
+            padding: 20px;
+            background: #ffffff;
+            border-top: 1px solid rgba(0, 138, 92, 0.1);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 1px solid rgba(0, 138, 92, 0.2);
+            border-radius: 25px;
+            font-size: 14px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: #008A5C;
+        }
+
+        .chat-send {
+            width: 45px;
+            height: 45px;
+            background: #008A5C;
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .chat-send:hover {
+            background: #006B47;
+            transform: scale(1.1);
+        }
+
+        /* Voting Section */
+        .voting-section {
+            background: #ffffff;
+            padding: 120px 50px;
+            width: 100%;
+        }
+
+        .voting-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .voting-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .voting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .voting-card {
+            background: #F9F9F9;
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 138, 92, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .voting-card:hover {
+            box-shadow: 0 15px 40px rgba(0, 138, 92, 0.1);
+            border-color: #008A5C;
+        }
+
+        .voting-category {
+            font-size: 14px;
+            color: #C9A74A;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .voting-nominee {
+            font-size: 22px;
+            color: #008A5C;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .voting-description {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .voting-stats {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .votes-count {
+            font-size: 14px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .vote-btn {
+            padding: 12px 35px;
+            background: #008A5C;
+            color: #ffffff;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+        }
+
+        .vote-btn:hover {
+            background: #006B47;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 138, 92, 0.3);
+        }
+
+        .vote-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Livestream Section */
+        .livestream-section {
+            background: #1a1a1a;
+            padding: 100px 50px;
+            width: 100%;
+        }
+
+        .livestream-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .livestream-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .livestream-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 0, 0, 0.2);
+            padding: 12px 30px;
+            border-radius: 30px;
+            color: #ff4444;
+            font-weight: 600;
+            font-size: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .live-dot {
+            width: 10px;
+            height: 10px;
+            background: #ff4444;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.5;
+                transform: scale(1.2);
+            }
+        }
+
+        .livestream-title {
+            font-size: 48px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .livestream-description {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 50px;
+        }
+
+        .livestream-player {
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(135deg, rgba(0, 138, 92, 0.1), rgba(201, 167, 74, 0.1));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 25px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .livestream-icon {
+            font-size: 80px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .livestream-status {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+        }
+
+        /* Social Banner */
+        .social-banner {
+            padding: 80px 50px;
+            background: #008A5C;
+            color: #ffffff;
+            width: 100%;
+        }
+
+        .social-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 50px;
+        }
+
+        .social-text h3 {
+            font-size: 38px;
+            margin-bottom: 25px;
+            color: #C9A74A;
+        }
+
+        .hashtags {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .hashtags span {
+            font-size: 18px;
+            font-weight: 600;
+            padding: 10px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(201, 167, 74, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: #C9A74A;
+            border-color: #C9A74A;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .main-footer {
+            background: #1a1a1a;
+            color: #ffffff;
+            padding: 90px 50px 50px;
+            width: 100%;
+        }
+
+        .footer-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: #C9A74A;
+        }
+
+        .footer-col p,
+        .footer-col li {
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 15px;
+            opacity: 0.85;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0.85;
+        }
+
+        .footer-col a:hover {
+            color: #C9A74A;
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            font-size: 15px;
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+
+        .footer-credits {
+            color: #C9A74A;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-right {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 85%;
+                max-width: 420px;
+                background: #ffffff;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 120px 40px 50px;
+                gap: 0;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+                overflow-y: auto;
+            }
+
+            .nav-right.active {
+                right: 0;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                margin-bottom: 40px;
+            }
+
+            .nav-links a {
+                font-size: 17px;
+                padding: 20px 0;
+                width: 100%;
+                border-bottom: 1px solid rgba(0, 138, 92, 0.1);
+            }
+
+            .nav-links a::after {
+                display: none;
+            }
+
+            .lang-toggle {
+                width: 100%;
+                padding: 15px;
+            }
+
+            .speakers-grid,
+            .outcomes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-submit {
+                width: 100%;
+            }
+
+            .chat-window {
+                width: 100%;
+                max-width: 380px;
+                right: -10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner {
+                padding: 0 25px;
+            }
+
+            .nav-logo {
+                font-size: 26px;
+            }
+
+            .hero-section {
+                padding: 90px 25px;
+                margin-top: 85px;
+            }
+
+            .hero-title {
+                font-size: 48px;
+            }
+
+            .hero-tagline {
+                font-size: 20px;
+            }
+
+            .hero-description {
+                font-size: 17px;
+            }
+
+            .section {
+                padding: 80px 25px;
+            }
+
+            .section-title {
+                font-size: 38px;
+            }
+
+            .section-subtitle {
+                font-size: 17px;
+            }
+
+            .quick-facts {
+                padding: 35px 25px;
+            }
+
+            .facts-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 30px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-primary,
+            .btn-secondary,
+            .btn-tertiary {
+                width: 100%;
+            }
+
+            .intro-section {
+                padding: 80px 25px;
+            }
+
+            .intro-text {
+                font-size: 20px;
+            }
+
+            .intro-highlight {
+                padding: 35px 25px;
+            }
+
+            .countdown-section {
+                padding: 70px 25px;
+            }
+
+            .countdown-title {
+                font-size: 32px;
+            }
+
+            .video-section {
+                padding: 80px 25px;
+            }
+
+            .video-placeholder {
+                height: 400px;
+            }
+
+            .social-banner {
+                padding: 60px 25px;
+            }
+
+            .social-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .main-footer {
+                padding: 70px 25px 40px;
+            }
+
+            .footer-columns {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .livestream-section {
+                padding: 80px 25px;
+            }
+
+            .livestream-title {
+                font-size: 36px;
+            }
+
+            .livestream-player {
+                height: 400px;
+            }
+
+            .voting-section {
+                padding: 80px 25px;
+            }
+
+            .newsletter-section {
+                padding: 80px 25px;
+            }
+
+            .newsletter-title {
+                font-size: 32px;
+            }
+
+            .chat-widget {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .chat-button {
+                width: 60px;
+                height: 60px;
+            }
+
+            .chat-button-icon {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-tagline {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .facts-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .countdown-timer {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .theme-icon-large i {
+            font-size: 48px;
+            color: #008055;
+            /* Gold color */
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 35px;
+            position: relative;
+            padding-top: 30px;
+        }
+
+        .timeline-item {
+            background: linear-gradient(135deg, #ffffff, #f4f8ff);
+            border-radius: 18px;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            border: 1px solid #e6ecf5;
+            transition: all 0.35s ease;
+        }
+
+        .timeline-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            border-color: #bcd2ff;
+        }
+
+        /* Floating Icon */
+        .timeline-icon {
+            width: 16px;
+            height: 16px;
+            background: #f3d990;
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(246, 230, 7, 0.6);
+            position: absolute;
+            top: -8px;
+            left: 20px;
+        }
+
+        /* Decorative Top Line */
+        .timeline-item::before {
+            content: "";
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, #f3d990, #ff8706);
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        /* Title */
+        .timeline-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1b2a4e;
+            margin-bottom: 10px;
+            line-height: 1.3;
+            letter-spacing: 0.2px;
+        }
+
+        /* Description */
+        .timeline-description {
+            color: #55657a;
+            font-size: 15px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .timeline-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .timeline-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        /* Partners Section */
+        .partners-section {
+            padding: 120px 50px;
+            background: #ffffff;
+            width: 100%;
+        }
+
+        .partners-content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 100px;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .partners-left-content h3 {
+            font-size: 38px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            color: #2d2d2d;
+        }
+
+        .partners-left-content p {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .partners-logos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            align-items: center;
+            justify-items: center;
+        }
+
+        .partner-logo-item {
+            width: 100%;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            border-radius: 15px;
+            font-size: 17px;
+            font-weight: 600;
+            color: #008A5C;
+            text-align: center;
+            padding: 25px;
+            border: 1px solid rgba(0, 138, 92, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .partner-logo-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 138, 92, 0.05), rgba(201, 167, 74, 0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .partner-logo-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 138, 92, 0.15);
+            border-color: #008A5C;
+        }
+
+        .partner-logo-item:hover::before {
+            opacity: 1;
+        }
+
+        .partner-logo-item span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* RTL Support for Partners */
+        html[lang="ar"] .partners-content-wrapper {
+            grid-template-columns: 1.2fr 1fr;
+        }
+
+        html[lang="ar"] .partners-left-content {
+            text-align: right;
+        }
+
+        html[lang="ar"] .partners-left-content h3 {
+            text-align: right;
+        }
+
+        html[lang="ar"] .partners-left-content p {
+            text-align: right;
+        }
+
+        /* Responsive Partners */
+        @media (max-width: 1024px) {
+            .partners-section {
+                padding: 100px 40px;
+            }
+
+            .partners-content-wrapper {
+                gap: 60px;
+            }
+
+            .partners-logos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 35px;
+            }
+
+            .partners-left-content h3 {
+                font-size: 32px;
+            }
+
+            .partner-logo-item {
+                height: 120px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .partners-section {
+                padding: 80px 25px;
+            }
+
+            .partners-content-wrapper {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            html[lang="ar"] .partners-content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .partners-left-content h3 {
+                font-size: 28px;
+                margin-bottom: 20px;
+            }
+
+            .partners-left-content p {
+                font-size: 15px;
+                margin-bottom: 30px;
+            }
+
+            .partners-logos-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+
+            .partner-logo-item {
+                height: 100px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .partners-section {
+                padding: 60px 20px;
+            }
+
+            .partners-left-content h3 {
+                font-size: 24px;
+            }
+
+            .partners-left-content p {
+                font-size: 14px;
+            }
+
+            .partners-logos-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .partner-logo-item {
+                height: 90px;
+                font-size: 13px;
+            }
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* space between logo and text */
+        }
+
+        .nav-logo img {
+            display: block;
+            height: 3opx !important;
+        }
+
+
+        .nav-logo span {
+            font-size: 22px;
+            font-weight: 700;
+            color: #008a5c;
+            /* change if needed */
+        }
+
+        .section-light {
+            overflow: hidden;
+            /* hide overflow */
+        }
+
+        .themes-icons-grid {
+            display: flex;
+            gap: 40px;
+            width: max-content;
+            animation: scroll-left 20s linear infinite;
+        }
+
+        /* Keyframes for smooth continuous scrolling */
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            /* start fully visible */
+            100% {
+                transform: translateX(-50%);
+            }
+
+            /* scroll to left by half the width (adjust as needed) */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        @view-transition {
+            navigation: auto;
+        }
+    </style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+    <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+</head>
+
+<body>
+    <div class="website-container"><!-- Navigation -->
+        <nav class="main-nav">
+            <div class="nav-inner">
+                <div class="nav-logo" id="navLogo">
+                    <img src="{% static 'logo.png' %}" alt="AWEGS Logo"
+                        style="height: 50px; vertical-align: middle; display: block;">
+                    <span id="logoText" data-en="AWEGS" data-ar="AWEGS">AWEGS</span>
+                </div>
+
+                <button class="nav-toggle" onclick="toggleMenu()" aria-label="Toggle Menu">
+                    <span></span><span></span><span></span>
+                </button>
+
+                <div class="nav-right">
+                    <div class="nav-links">
+
+                        <!-- Home -->
+                        <a href="{% url 'home' %}#home" data-en="Home" data-ar="الرئيسية">Home</a>
+
+                        <!-- About -->
+                        <a href="{% url 'home' %}#about" data-en="About" data-ar="عن القمة">About</a>
+
+                        <!-- Speakers -->
+                        <a href="{% url 'home' %}#speakers" data-en="Speakers" data-ar="المتحدثون">Speakers</a>
+
+                        <!-- Awards -->
+                        <a href="{% url 'home' %}#voting" data-en="Awards" data-ar="الجوائز">Awards</a>
+
+                        <!-- Livestream -->
+                        <a href="{% url 'home' %}#livestream" data-en="Livestream" data-ar="البث المباشر">Livestream</a>
+
+                        <!-- Partners -->
+                        <a href="{% url 'home' %}#partners" data-en="Partners" data-ar="الشركاء">Partners</a>
+
+                        <!-- Register page -->
+                        <a href="{% url 'register' %}" data-en="Register" data-ar="التسجيل">Register</a>
+
+                    </div>
+
+                    <button class="lang-toggle" onclick="toggleLanguage()" data-en="العربية"
+                        data-ar="English">العربية</button>
+                </div>
+            </div>
+        </nav>
+
+
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <div class="hero-badge" data-en="Dubai 2025 • Empowering Women • Transforming Africa"
+                    data-ar="دبي 2025 • تمكين المرأة • تحويل أفريقيا">
+                    Dubai 2025 • Empowering Women • Transforming Africa
+                </div>
+                <h1 class="hero-title" data-en="AWEGS 2025" data-ar="قمة المرأة الأفريقية 2025">AWEGS 2025</h1>
+                <h2 class="hero-tagline" data-en="African Women Entrepreneurs Global Summit"
+                    data-ar="القمة العالمية لسيدات الأعمال الأفريقيات">African Women Entrepreneurs Global Summit</h2>
+                <p class="hero-description"
+                    data-en="Towards a Smart and Green Africa, Led by Innovative Women Shaping the Knowledge Economy from Dubai to the World."
+                    data-ar="نحو أفريقيا ذكية وخضراء، تقودها نساء مبتكرات يشكلن اقتصاد المعرفة من دبي إلى العالم.">
+                    Towards a Smart and Green Africa, Led by Innovative Women Shaping the Knowledge Economy from Dubai
+                    to the World.</p>
+                <div class="hero-buttons"><a href="#register" class="btn-primary" data-en="Register Now"
+                        data-ar="سجل الآن">Register Now</a> <a href="#partners" class="btn-secondary"
+                        data-en="Become a Partner" data-ar="كن شريكاً">Become a Partner</a> <a
+                        href="mailto:info@awegs.org?subject=Brochure Request" class="btn-tertiary"
+                        data-en="Download Brochure" data-ar="تحميل الكتيب">Download Brochure</a>
+                </div>
+            </div>
+        </section><!-- Quick Facts -->
+        <div class="quick-facts">
+            <div class="facts-grid">
+                <div class="fact-item"><span class="fact-icon"></span> <span class="fact-text" data-en="6 December 2025"
+                        data-ar="6 ديسمبر 2025">6 December 2025</span>
+                </div>
+                <div class="fact-item"><span class="fact-icon"></span> <span class="fact-text"
+                        data-en="Dubai World Trade Centre" data-ar="مركز دبي التجاري العالمي">Dubai World Trade
+                        Centre</span>
+                </div>
+                <div class="fact-item"><span class="fact-icon"></span> <span class="fact-text" data-en="500+ Delegates"
+                        data-ar="أكثر من 500 مندوب">500+ Delegates</span>
+                </div>
+                <div class="fact-item"><span class="fact-icon"></span> <span class="fact-text"
+                        data-en="35+ African Countries" data-ar="أكثر من 35 دولة أفريقية">35+ African Countries</span>
+                </div>
+            </div>
+        </div><!-- Countdown Timer -->
+        <section class="countdown-section">
+            <div class="countdown-inner">
+                <h2 class="countdown-title" data-en="Countdown to AWEGS 2025" data-ar="العد التنازلي لـ AWEGS 2025">
+                    Countdown to AWEGS 2025</h2>
+                <div class="countdown-timer" id="countdown">
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="days">
+                            0
+                        </div>
+                        <div class="countdown-label" data-en="Days" data-ar="يوم">
+                            Days
+                        </div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="hours">
+                            0
+                        </div>
+                        <div class="countdown-label" data-en="Hours" data-ar="ساعة">
+                            Hours
+                        </div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="minutes">
+                            0
+                        </div>
+                        <div class="countdown-label" data-en="Minutes" data-ar="دقيقة">
+                            Minutes
+                        </div>
+                    </div>
+                    <div class="countdown-box">
+                        <div class="countdown-number" id="seconds">
+                            0
+                        </div>
+                        <div class="countdown-label" data-en="Seconds" data-ar="ثانية">
+                            Seconds
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- Intro Section -->
+        <section class="intro-section">
+            <div class="intro-inner">
+                <p class="intro-text"
+                    data-en="Dubai hosts a historic platform uniting visionary African women, entrepreneurs, policymakers, investors, and development partners to build a smarter, greener, and more inclusive future for the African continent."
+                    data-ar="تستضيف دبي منصة تاريخية توحد النساء الأفريقيات صاحبات الرؤى ورائدات الأعمال وصانعي السياسات والمستثمرين وشركاء التنمية لبناء مستقبل أكثر ذكاءً وخضرة وشمولاً للقارة الأفريقية.">
+                    Dubai hosts a historic platform uniting visionary African women, entrepreneurs, policymakers,
+                    investors, and development partners to build a smarter, greener, and more inclusive future for the
+                    African continent.</p>
+                <div class="intro-highlight">
+                    <h3 data-en="About AWEGS" data-ar="عن AWEGS">About AWEGS</h3>
+                    <p data-en="The African Women Entrepreneurs Global Summit (AWEGS) is organized by AFRI ME Trading for the Forum of African Female Entrepreneurs (FAFE). It serves as a permanent bridge between Africa and the UAE for women-led innovation, education, AI advancement, and sustainable economic growth."
+                        data-ar="تنظم القمة العالمية لسيدات الأعمال الأفريقيات (AWEGS) من قبل AFRI ME Trading لمنتدى رائدات الأعمال الأفريقيات (FAFE). تعمل كجسر دائم بين أفريقيا والإمارات للابتكار الذي تقوده النساء والتعليم والتقدم في مجال الذكاء الاصطناعي والنمو الاقتصادي المستدام.">
+                        The African Women Entrepreneurs Global Summit (AWEGS) is organized by AFRI ME Trading for the
+                        Forum of African Female Entrepreneurs (FAFE). It serves as a permanent bridge between Africa and
+                        the UAE for women-led innovation, education, AI advancement, and sustainable economic growth.
+                    </p>
+                </div>
+            </div>
+        </section><!-- Five Core Themes Icons -->
+        <section class="section section-light">
+            <div class="section-inner">
+                <div class="section-header">
+                    <h2 class="section-title" data-en="Five Core Themes" data-ar="خمسة محاور أساسية">Five Core Themes
+                    </h2>
+                    <p class="section-subtitle" data-en="Building Africa's future across five strategic pillars"
+                        data-ar="بناء مستقبل أفريقيا عبر خمس ركائز استراتيجية">Building Africa's future across five
+                        strategic pillars</p>
+                </div>
+                <div class="themes-icons-grid">
+                    <div class="theme-icon-card"><span class="theme-icon-large"><i class="fas fa-robot"></i></span>
+                        <h3 class="theme-icon-title" data-en="AI &amp; Knowledge Economy"
+                            data-ar="الذكاء الاصطناعي واقتصاد المعرفة">AI &amp; Knowledge Economy</h3>
+                        <p class="theme-icon-desc"
+                            data-en="Building an intelligent Africa through education and innovation."
+                            data-ar="بناء أفريقيا ذكية من خلال التعليم والابتكار.">Building an intelligent Africa
+                            through education and innovation.</p>
+                    </div>
+                    <div class="theme-icon-card"> <span class="theme-icon-large"><i class="fas fa-leaf"></i></span>
+                        <h3 class="theme-icon-title" data-en="Sustainability &amp; Clean Energy"
+                            data-ar="الاستدامة والطاقة النظيفة">Sustainability &amp; Clean Energy</h3>
+                        <p class="theme-icon-desc" data-en="Empowering women in the green economy."
+                            data-ar="تمكين النساء في الاقتصاد الأخضر.">Empowering women in the green economy.</p>
+                    </div>
+                    <div class="theme-icon-card"> <span class="theme-icon-large"><i class="fas fa-seedling"></i></span>
+                        <h3 class="theme-icon-title" data-en="Organic Products &amp; Food Security"
+                            data-ar="المنتجات العضوية والأمن الغذائي">Organic Products &amp; Food Security</h3>
+                        <p class="theme-icon-desc" data-en="Promoting Africa's natural wealth to global markets."
+                            data-ar="تعزيز ثروة أفريقيا الطبيعية إلى الأسواق العالمية.">Promoting Africa's natural
+                            wealth to global markets.</p>
+                    </div>
+                    <div class="theme-icon-card"> <span class="theme-icon-large"><i class="fas fa-handshake"></i></span>
+                        <h3 class="theme-icon-title" data-en="Trade &amp; Investment Partnerships"
+                            data-ar="شراكات التجارة والاستثمار">Trade &amp; Investment Partnerships</h3>
+                        <p class="theme-icon-desc" data-en="Connecting African and UAE business ecosystems."
+                            data-ar="ربط الأنظمة التجارية الأفريقية والإماراتية.">Connecting African and UAE business
+                            ecosystems.</p>
+                    </div>
+                    <div class="theme-icon-card"> <span class="theme-icon-large"><i class="fas fa-user-tie"></i></span>
+                        <h3 class="theme-icon-title" data-en="Women's Leadership &amp; Innovation"
+                            data-ar="قيادة المرأة والابتكار">Women's Leadership &amp; Innovation</h3>
+                        <p class="theme-icon-desc" data-en="Inspiring a new generation of African changemakers."
+                            data-ar="إلهام جيل جديد من صانعي التغيير الأفارقة.">Inspiring a new generation of African
+                            changemakers.</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </section><!-- Video Section -->
+        <section class="video-section">
+            <div class="video-inner">
+                <h2 class="video-title" data-en="From Africa to Dubai – The Gateway of Opportunity"
+                    data-ar="من أفريقيا إلى دبي – بوابة الفرص">From Africa to Dubai – The Gateway of Opportunity</h2>
+                <p class="video-description"
+                    data-en="Watch our 30-second feature showcasing entrepreneurial stories and UAE–Africa collaboration, produced by IBC Dubai."
+                    data-ar="شاهد فيديو الـ 30 ثانية الذي يعرض قصص ريادة الأعمال والتعاون بين الإمارات وأفريقيا، من إنتاج IBC Dubai.">
+                    Watch our 30-second feature showcasing entrepreneurial stories and UAE–Africa collaboration,
+                    produced by IBC Dubai.</p>
+                <div class="video-placeholder" onclick="playVideo()">
+                    <div class="video-play-icon">
+                        ▶
+                    </div>
+                    <div class="video-label" data-en="Click to Watch Promo Video"
+                        data-ar="انقر لمشاهدة الفيديو الترويجي">
+                        Click to Watch Promo Video
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Speakers Section -->
+        <section id="speakers" class="section section-light">
+            <div class="section-inner">
+                <div class="section-header">
+                    <h2 class="section-title" data-en="Featured Speakers" data-ar="المتحدثون المميزون">Featured Speakers
+                    </h2>
+                    <p class="section-subtitle"
+                        data-en="Keynote speakers include ministers, ambassadors, investors, and innovators from over 35 countries"
+                        data-ar="يشمل المتحدثون الرئيسيون وزراء وسفراء ومستثمرين ومبتكرين من أكثر من 35 دولة">Keynote
+                        speakers include ministers, ambassadors, investors, and innovators from over 35 countries</p>
+                </div>
+                <div class="speakers-grid">
+                    <div class="speaker-card">
+                        <div class="speaker-info">
+                            <h3 class="speaker-name" data-en="Mr. Mustafa Ali Amshan" data-ar="السيد مصطفى علي عمشان">
+                                Mr. Mustafa Ali Amshan</h3>
+                            <p class="speaker-title" data-en="Chairman, AWEGS &amp; FAFE" data-ar="رئيس AWEGS و FAFE">
+                                Chairman, AWEGS &amp; FAFE</p>
+                            <p class="speaker-bio"
+                                data-en="Leading Africa's women empowerment movement through innovation and purpose."
+                                data-ar="قيادة حركة تمكين المرأة الأفريقية من خلال الابتكار والهدف.">Leading Africa's
+                                women empowerment movement through innovation and purpose.</p>
+                        </div>
+                    </div>
+                    <div class="speaker-card">
+                        <div class="speaker-info">
+                            <h3 class="speaker-name" data-en="Ministers &amp; Ambassadors" data-ar="الوزراء والسفراء">
+                                Ministers &amp; Ambassadors</h3>
+                            <p class="speaker-title" data-en="Government Representatives" data-ar="ممثلو الحكومات">
+                                Government Representatives</p>
+                            <p class="speaker-bio"
+                                data-en="Policy leaders driving women's economic empowerment across Africa."
+                                data-ar="قادة السياسات يدفعون التمكين الاقتصادي للمرأة في أفريقيا.">Policy leaders
+                                driving women's economic empowerment across Africa.</p>
+                        </div>
+                    </div>
+                    <div class="speaker-card">
+                        <div class="speaker-info">
+                            <h3 class="speaker-name" data-en="Investment Leaders" data-ar="قادة الاستثمار">Investment
+                                Leaders</h3>
+                            <p class="speaker-title" data-en="UAE &amp; International Investors"
+                                data-ar="مستثمرون من الإمارات ودوليون">UAE &amp; International Investors</p>
+                            <p class="speaker-bio" data-en="Bringing capital and expertise to women-led enterprises."
+                                data-ar="إحضار رأس المال والخبرة إلى المشاريع التي تقودها النساء.">Bringing capital and
+                                expertise to women-led enterprises.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="quote-box" style="margin-top: 60px;">
+                    <p data-en="Empowering women is empowering nations — Africa's renaissance begins with her women."
+                        data-ar="تمكين المرأة هو تمكين الأمم — نهضة أفريقيا تبدأ بنسائها.">Empowering women is
+                        empowering nations — Africa's renaissance begins with her women.</p>
+                    <p class="quote-author" data-en="— Mr. Mustafa Ali Amshan, Chairman AWEGS &amp; FAFE"
+                        data-ar="— السيد مصطفى علي عمشان، رئيس AWEGS و FAFE">— Mr. Mustafa Ali Amshan, Chairman AWEGS
+                        &amp; FAFE</p>
+                </div>
+                <div style="text-align: center; margin-top: 60px;"><a
+                        href="mailto:info@awegs.org?subject=Speaker Information" class="btn-primary"
+                        data-en="View All Speakers" data-ar="عرض جميع المتحدثين">View All Speakers</a>
+                </div>
+            </div>
+        </section><!-- Timeline Section -->
+        <section class="section section-white">
+            <div class="section-inner">
+                <div class="section-header">
+                    <h2 class="section-title" data-en="Summit Highlights Timeline"
+                        data-ar="الجدول الزمني لأبرز الأحداث">Summit Highlights Timeline</h2>
+                    <p class="section-subtitle" data-en="A day of transformation, connection, and opportunity"
+                        data-ar="يوم من التحول والتواصل والفرص">A day of transformation, connection, and opportunity</p>
+                </div>
+                <div class="timeline-grid">
+                    <div class="timeline-item"><span class="timeline-icon"></span>
+                        <h3 class="timeline-title" data-en="Opening Ceremony" data-ar="حفل الافتتاح">Opening Ceremony
+                        </h3>
+                        <p class="timeline-description" data-en="Grand welcome with ministerial addresses"
+                            data-ar="ترحيب كبير مع خطابات وزارية">Grand welcome with ministerial addresses</p>
+                    </div>
+                    <div class="timeline-item"><span class="timeline-icon"></span>
+                        <h3 class="timeline-title" data-en="Policy Dialogue" data-ar="حوار السياسات">Policy Dialogue
+                        </h3>
+                        <p class="timeline-description" data-en="Strategic discussions on economic empowerment"
+                            data-ar="مناقشات استراتيجية حول التمكين الاقتصادي">Strategic discussions on economic
+                            empowerment</p>
+                    </div>
+                    <div class="timeline-item"><span class="timeline-icon"></span>
+                        <h3 class="timeline-title" data-en="Innovation Panels" data-ar="لجان الابتكار">Innovation Panels
+                        </h3>
+                        <p class="timeline-description" data-en="Exploring AI, sustainability, and green tech"
+                            data-ar="استكشاف الذكاء الاصطناعي والاستدامة">Exploring AI, sustainability, and green tech
+                        </p>
+                    </div>
+                    <div class="timeline-item"><span class="timeline-icon"></span>
+                        <h3 class="timeline-title" data-en="B2B Matchmaking" data-ar="المواءمة التجارية">B2B Matchmaking
+                        </h3>
+                        <p class="timeline-description" data-en="Connecting entrepreneurs with investors"
+                            data-ar="ربط رواد الأعمال بالمستثمرين">Connecting entrepreneurs with investors</p>
+                    </div>
+                    <div class="timeline-item"><span class="timeline-icon"></span>
+                        <h3 class="timeline-title" data-en="Exhibition" data-ar="المعرض">Exhibition</h3>
+                        <p class="timeline-description" data-en="Showcasing women-led innovations"
+                            data-ar="عرض الابتكارات التي تقودها النساء">Showcasing women-led innovations</p>
+                    </div>
+                    <div class="timeline-item"><span class="timeline-icon"></span>
+                        <h3 class="timeline-title" data-en="Awards Gala" data-ar="حفل الجوائز">Awards Gala</h3>
+                        <p class="timeline-description" data-en="Celebrating inspiring entrepreneurs"
+                            data-ar="الاحتفال برائدات الأعمال الملهمات">Celebrating inspiring entrepreneurs</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </section>
+        <!-- Outcomes Section -->
+        <section class="section section-light">
+            <div class="section-inner">
+                <div class="section-header">
+                    <h2 class="section-title" data-en="Expected Outcomes" data-ar="النتائج المتوقعة">Expected Outcomes
+                    </h2>
+                    <p class="section-subtitle"
+                        data-en="Tangible results that will transform Africa's economic landscape"
+                        data-ar="نتائج ملموسة ستحول المشهد الاقتصادي الأفريقي">
+                        Tangible results that will transform Africa's economic landscape
+                    </p>
+                </div>
+
+                <div class="outcomes-grid">
+
+                    <div class="outcome-card">
+                        <h3 data-en="African-Emirati Women Business Council"
+                            data-ar="مجلس الأعمال النسائي الأفريقي الإماراتي">
+                            African-Emirati Women Business Council
+                        </h3>
+                        <p data-en="Launch of the African–Emirati Women Business Council – Dubai Chapter"
+                            data-ar="إطلاق مجلس الأعمال النسائي الأفريقي الإماراتي - فرع دبي">
+                            Launch of the African–Emirati Women Business Council – Dubai Chapter
+                        </p>
+                    </div>
+
+                    <div class="outcome-card">
+                        <h3 data-en="25+ MoUs &amp; Cooperation Agreements" data-ar="أكثر من 25 مذكرة تفاهم">
+                            25+ MoUs &amp; Cooperation Agreements
+                        </h3>
+                        <p data-en="Signing of 25+ MoUs and cooperation agreements"
+                            data-ar="توقيع أكثر من 25 مذكرة تفاهم واتفاقية تعاون">
+                            Signing of 25+ MoUs and cooperation agreements
+                        </p>
+                    </div>
+
+                    <div class="outcome-card">
+                        <h3 data-en="Dubai Declaration on Women &amp; Innovation"
+                            data-ar="إعلان دبي حول المرأة والابتكار">
+                            Dubai Declaration on Women &amp; Innovation
+                        </h3>
+                        <p data-en="Publication of the Dubai Declaration on Women, Innovation &amp; Sustainability"
+                            data-ar="نشر إعلان دبي حول المرأة والابتكار والاستدامة">
+                            Publication of the Dubai Declaration on Women, Innovation &amp; Sustainability
+                        </p>
+                    </div>
+
+                    <div class="outcome-card">
+                        <h3 data-en="FAFE Investment Platform" data-ar="منصة استثمار FAFE">
+                            FAFE Investment Platform
+                        </h3>
+                        <p data-en="Establishment of the FAFE Investment Platform for Women-Led Enterprises"
+                            data-ar="إنشاء منصة استثمار FAFE للمشاريع التي تقودها النساء">
+                            Establishment of the FAFE Investment Platform for Women-Led Enterprises
+                        </p>
+                    </div>
+
+                    <div class="outcome-card">
+                        <h3 data-en="AI &amp; Education Initiative" data-ar="مبادرة الذكاء الاصطناعي والتعليم">
+                            AI &amp; Education Initiative
+                        </h3>
+                        <p data-en="Creation of an AI &amp; Education Initiative for African Universities"
+                            data-ar="إنشاء مبادرة الذكاء الاصطناعي والتعليم للجامعات الأفريقية">
+                            Creation of an AI &amp; Education Initiative for African Universities
+                        </p>
+                    </div>
+
+                    <div class="outcome-card">
+                        <h3 data-en="AWEGS Awards &amp; Permanent Secretariat" data-ar="جوائز AWEGS والأمانة الدائمة">
+                            AWEGS Awards &amp; Permanent Secretariat
+                        </h3>
+                        <p data-en="Launch of AWEGS Awards and opening of the Permanent Secretariat in Dubai"
+                            data-ar="إطلاق جوائز AWEGS وافتتاح الأمانة الدائمة في دبي">
+                            Launch of AWEGS Awards and opening of the Permanent Secretariat in Dubai
+                        </p>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </section>
+
+/* 
+        <section id="voting" class="voting-section">
+            <div class="voting-inner">
+                <div class="voting-header">
+                    <h2 class="section-title" data-en="Digital Awards Voting System"
+                        data-ar="نظام التصويت الرقمي للجوائز">Digital Awards Voting System</h2>
+                    <p class="section-subtitle" data-en="Vote for your favorite inspiring women entrepreneurs"
+                        data-ar="صوت لرائدات الأعمال الملهمات المفضلات لديك">Vote for your favorite inspiring women
+                        entrepreneurs</p>
+                </div>
+                <div class="voting-grid">
+                    <div class="voting-card">
+                        <div class="voting-category" data-en="Innovation Award" data-ar="جائزة الابتكار">
+                            Innovation Award
+                        </div>
+                        <h3 class="voting-nominee" data-en="Tech Pioneer" data-ar="رائدة التكنولوجيا">Tech Pioneer</h3>
+                        <p class="voting-description"
+                            data-en="Recognizing breakthrough innovations in AI and technology"
+                            data-ar="تقدير الابتكارات الرائدة في الذكاء الاصطناعي والتكنولوجيا">Recognizing breakthrough
+                            innovations in AI and technology</p>
+                        <div class="voting-stats"><span class="votes-count" data-vote-count="innovation">0 votes</span>
+                        </div><button class="vote-btn" onclick="vote('innovation')" data-en="Vote Now"
+                            data-ar="صوت الآن">Vote Now</button>
+                    </div>
+                    <div class="voting-card">
+                        <div class="voting-category" data-en="Sustainability Award" data-ar="جائزة الاستدامة">
+                            Sustainability Award
+                        </div>
+                        <h3 class="voting-nominee" data-en="Green Leader" data-ar="قائدة الاقتصاد الأخضر">Green Leader
+                        </h3>
+                        <p class="voting-description"
+                            data-en="Celebrating excellence in clean energy and environmental initiatives"
+                            data-ar="الاحتفال بالتميز في الطاقة النظيفة والمبادرات البيئية">Celebrating excellence in
+                            clean energy and environmental initiatives</p>
+                        <div class="voting-stats"><span class="votes-count" data-vote-count="sustainability">0
+                                votes</span>
+                        </div><button class="vote-btn" onclick="vote('sustainability')" data-en="Vote Now"
+                            data-ar="صوت الآن">Vote Now</button>
+                    </div>
+                    <div class="voting-card">
+                        <div class="voting-category" data-en="Business Excellence Award" data-ar="جائزة التميز التجاري">
+                            Business Excellence Award
+                        </div>
+                        <h3 class="voting-nominee" data-en="Market Transformer" data-ar="محولة الأسواق">Market
+                            Transformer</h3>
+                        <p class="voting-description" data-en="Honoring exceptional business growth and market impact"
+                            data-ar="تكريم النمو التجاري الاستثنائي والتأثير في الأسواق">Honoring exceptional business
+                            growth and market impact</p>
+                        <div class="voting-stats"><span class="votes-count" data-vote-count="business">0 votes</span>
+                        </div><button class="vote-btn" onclick="vote('business')" data-en="Vote Now"
+                            data-ar="صوت الآن">Vote Now</button>
+                    </div>
+                </div>
+            </div>
+        </section> */
+        <section id="voting" class="voting-section">
+    <div class="voting-inner">
+        <div class="voting-header">
+            <h2 class="section-title" data-en="Digital Awards Voting System"
+                data-ar="نظام التصويت الرقمي للجوائز">Digital Awards Voting System</h2>
+            <p class="section-subtitle" data-en="Vote for your favorite inspiring women entrepreneurs"
+                data-ar="صوت لرائدات الأعمال الملهمات المفضلات لديك">Vote for your favorite inspiring women
+                entrepreneurs</p>
+        </div>
+
+        <div class="voting-grid">
+            {% for category in vote_categories %}
+            <div class="voting-card">
+                <div class="voting-category" data-en="{{ category.display_name }}" data-ar="{{ category.display_name }}">
+                    {{ category.display_name }}
+                </div>
+                <h3 class="voting-nominee" data-en="{{ category.display_name }}" data-ar="{{ category.display_name }}">
+                    {{ category.display_name }}
+                </h3>
+                <p class="voting-description" data-en="Vote for this category" data-ar="صوت لهذه الفئة">
+                    Vote for this category
+                </p>
+                <div class="voting-stats">
+                <span class="votes-count" data-vote-count="{{ category.name }}">{{ category.votes }} votes</span>
+                </div>
+                <button class="vote-btn" onclick="vote('{{ category.name }}')" data-en="Vote Now" data-ar="صوت الآن">
+                    Vote Now
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+        <!-- Livestream Section -->
+        <section id="livestream" class="livestream-section">
+            <div class="livestream-inner">
+                <div class="livestream-header">
+                    <div class="livestream-badge"><span class="live-dot"></span> <span
+                            data-en="LIVE EVENT - Opening Ceremony" data-ar="بث مباشر - حفل الافتتاح">LIVE EVENT -
+                            Opening Ceremony</span>
+                    </div>
+                    <h2 class="livestream-title" data-en="Watch AWEGS 2025 Live" data-ar="شاهد AWEGS 2025 مباشرة">Watch
+                        AWEGS 2025 Live</h2>
+                    <p class="livestream-description"
+                        data-en="Join us live on December 6, 2025, for the opening ceremony and key sessions"
+                        data-ar="انضم إلينا مباشرة في 6 ديسمبر 2025 لحفل الافتتاح والجلسات الرئيسية">Join us live on
+                        December 6, 2025, for the opening ceremony and key sessions</p>
+                </div>
+                <div class="livestream-player"><span class="livestream-icon">📹</span>
+                    <p class="livestream-status" data-en="Livestream will be available on December 6, 2025"
+                        data-ar="البث المباشر سيكون متاحاً في 6 ديسمبر 2025">Livestream will be available on December 6,
+                        2025</p>
+                </div>
+            </div>
+        </section>
+        <section id="partners" class="section section-white">
+            <div class="section-inner">
+                <div class="section-header">
+                    <h2 class="section-title" data-en="Partners &amp; Sponsors" data-ar="الشركاء والرعاة">Partners &amp;
+                        Sponsors</h2>
+                    <p class="section-subtitle" data-en="Building Africa's future together"
+                        data-ar="بناء مستقبل أفريقيا معاً">Building Africa's future together</p>
+                </div>
+
+                <div class="partners-content-wrapper">
+                    <div class="partners-left-content">
+                        <h3 data-en="We Work With the Best Partners" data-ar="نحن نعمل مع أفضل الشركاء">We Work With the
+                            Best Partners</h3>
+                        <p data-en="While we are at the forefront of and specialize in design-build, we are very familiar with a number of delivery methods and are confident we can find the process that will best help you meet your goals."
+                            data-ar="بينما نحن في طليعة المتخصصين في التصميم والبناء، فإننا على دراية جيدة بعدد من أساليب التسليم وواثقون من أننا يمكن أن نجد العملية التي ستساعدك بشكل أفضل على تحقيق أهدافك.">
+                            While we are at the forefront of and specialize in design-build, we are very familiar with a
+                            number of delivery methods and are confident we can find the process that will best help you
+                            meet your goals.</p>
+                        <a href="mailto:info@awegs.org?subject=Partnership%20Inquiry" class="btn-primary"
+                            data-en="Become a Partner" data-ar="كن شريكاً">Become a Partner</a>
+                    </div>
+
+                    <div class="partners-logos-grid">
+                        <div class="partner-logo-item" data-en="AFRI ME Trading" data-ar="أفريقيا الشرق الأوسط">AFRI ME
+                            Trading</div>
+                        <div class="partner-logo-item" data-en="Royal Events" data-ar="الأحداث الملكية">Royal Events
+                        </div>
+                        <div class="partner-logo-item" data-en="Supreme Council" data-ar="المجلس الأعلى">Supreme Council
+                        </div>
+                        <div class="partner-logo-item" data-en="Knowledge Based Socity"
+                            data-ar="المجتمع القائم على المعرفة">Knowledge Based</div>
+                        <div class="partner-logo-item" data-en="Dubai TV" data-ar="قناة دبي">Dubai TV</div>
+                        <div class="partner-logo-item" data-en="Africa24" data-ar="أفريقيا 24">Africa24</div>
+                        <div class="partner-logo-item" data-en="Bloomberg Africa" data-ar="بلومبرج أفريقيا">Bloomberg
+                            Africa</div>
+                        <div class="partner-logo-item" data-en="IBC Dubai" data-ar="آي بي سي دبي">IBC Dubai</div>
+                        <div class="partner-logo-item" data-en="Dubai World Trade" data-ar="دبي التجاري العالمي">Dubai
+                            World Trade</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Newsletter Section -->
+        <section class="newsletter-section">
+            <div class="newsletter-inner">
+                <h3 class="newsletter-title" data-en="Stay Updated" data-ar="ابق على اطلاع">Stay Updated</h3>
+                <p class="newsletter-description"
+                    data-en="Subscribe to receive the latest news, updates, and exclusive content about AWEGS 2025"
+                    data-ar="اشترك لتلقي آخر الأخبار والتحديثات والمحتوى الحصري حول AWEGS 2025">Subscribe to receive the
+                    latest news, updates, and exclusive content about AWEGS 2025</p>
+                <form class="newsletter-form" id="newsletterForm">
+                    {% csrf_token %}
+                    <input type="email" name="email" class="newsletter-input" placeholder="Enter your email address"
+                        required>
+                    <button type="button" id="newsletterBtn" class="newsletter-submit">Subscribe</button>
+                    <div id="newsletterMessage" style="margin-top:10px;"></div>
+                </form>
+                <div class="newsletter-message" id="newsletterMessage"></div>
+            </div>
+        </section><!-- Social Banner -->
+        <section class="social-banner">
+            <div class="social-inner">
+                <div class="social-text">
+                    <h3 data-en="Follow the Movement" data-ar="تابع الحركة">Follow the Movement</h3>
+                    <div class="hashtags"><span>#AWEGS2025</span> <span>#WomenLeadAfrica</span>
+                        <span>#SmartGreenAfrica</span>
+                    </div>
+                </div>
+                <div class="social-icons"><a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                        <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                        </svg></a> <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                        <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+                        </svg></a> <a href="#" target="_blank" rel="noopener noreferrer" aria-label="X">
+                        <svg width="24" height="24" viewbox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg></a>
+                </div>
+            </div>
+        </section><!-- Footer -->
+        <footer id="register" class="main-footer">
+            <div class="footer-inner">
+                <div class="footer-columns">
+                    <div class="footer-col">
+                        <h3 data-en="About AWEGS" data-ar="عن AWEGS">About AWEGS</h3>
+                        <p data-en="The African Women Entrepreneurs Global Summit serves as a permanent bridge between Africa and the UAE for women-led innovation, education, and sustainable economic growth."
+                            data-ar="تخدم القمة العالمية لسيدات الأعمال الأفريقيات كجسر دائم بين أفريقيا والإمارات للابتكار والتعليم والنمو الاقتصادي المستدام.">
+                            The African Women Entrepreneurs Global Summit serves as a permanent bridge between Africa
+                            and the UAE for women-led innovation, education, and sustainable economic growth.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h3 data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h3>
+                        <ul>
+                            <li><a href="#home" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                            <li><a href="#about" data-en="About" data-ar="عن القمة">About</a></li>
+                            <li><a href="#speakers" data-en="Speakers" data-ar="المتحدثون">Speakers</a></li>
+                            <li><a href="#voting" data-en="Awards" data-ar="الجوائز">Awards</a></li>
+                            <li><a href="#partners" data-en="Partners" data-ar="الشركاء">Partners</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h3 data-en="Contact" data-ar="اتصل بنا">Contact</h3>
+                        <p>📧 <a href="mailto:info@awegs.org">info@awegs.org</a></p>
+                        <p style="margin-top: 20px;">📍 Dubai World Trade Centre<br>
+                            Dubai, UAE</p>
+                        <p style="margin-top: 15px;" data-en="📅 6 December 2025" data-ar="📅 6 ديسمبر 2025">📅 6
+                            December 2025</p>
+                    </div>
+                    <div class="footer-col">
+                        <h3 data-en="Register" data-ar="سجل">Register</h3>
+                        <p data-en="Be part of AWEGS 2025. Register now as a delegate, exhibitor, or sponsor."
+                            data-ar="كن جزءاً من AWEGS 2025. سجل الآن كمندوب أو عارض أو راعي.">Be part of AWEGS 2025.
+                            Register now as a delegate, exhibitor, or sponsor.</p>
+                        <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 25px;"><a
+                                href="{% url 'register' %}" class="btn-primary"
+                                style="padding: 12px 25px; font-size: 14px; text-align: center;"
+                                data-en="Register as Delegate" data-ar="سجل كمندوب">Register as Delegate</a> <a
+                                href="{% url 'register' %}" class="btn-secondary"
+                                style="padding: 12px 25px; font-size: 14px; text-align: center;"
+                                data-en="Become an Exhibitor" data-ar="كن عارضاً">Become an Exhibitor</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p data-en="© 2025 AWEGS - African Women Entrepreneurs Global Summit. All rights reserved."
+                        data-ar="© 2025 AWEGS - القمة العالمية لسيدات الأعمال الأفريقيات. جميع الحقوق محفوظة.">© 2025
+                        AWEGS - African Women Entrepreneurs Global Summit. All rights reserved.</p>
+                    <p class="footer-credits" data-en="Powered by AFRI ME Trading – Dubai, UAE"
+                        data-ar="مدعوم من AFRI ME Trading – دبي، الإمارات">Powered by AFRI ME Trading – Dubai, UAE</p>
+                </div>
+            </div>
+        </footer><!-- Chat Widget -->
+        <div class="chat-widget"><button class="chat-button" onclick="toggleChat()" aria-label="Open Chat"> <span
+                    class="chat-button-icon" id="chatButtonIcon">💬</span> </button>
+            <div class="chat-window" id="chatWindow">
+                <div class="chat-header">
+                    <div class="chat-header-info">
+                        <h4 data-en="Amina - AI Assistant" data-ar="أمينة - المساعدة الذكية">Amina - AI Assistant</h4>
+                        <p data-en="Here to help with AWEGS 2025" data-ar="هنا للمساعدة في AWEGS 2025">Here to help with
+                            AWEGS 2025</p>
+                    </div><button class="chat-close" onclick="toggleChat()" aria-label="Close Chat">×</button>
+                </div>
+                <div class="chat-messages" id="chatMessages">
+                    <div class="chat-message assistant"
+                        data-en-text="Hello! I'm Amina, your AWEGS 2025 assistant. How can I help you today?"
+                        data-ar-text="مرحباً! أنا أمينة، مساعدتك في AWEGS 2025. كيف يمكنني مساعدتك اليوم؟">
+                        Hello! I'm Amina, your AWEGS 2025 assistant. How can I help you today?
+                        <div class="chat-quick-options"><button class="chat-quick-btn"
+                                onclick="askQuestion('registration')" data-en="Registration Info"
+                                data-ar="معلومات التسجيل">Registration Info</button> <button class="chat-quick-btn"
+                                onclick="askQuestion('schedule')" data-en="Event Schedule"
+                                data-ar="جدول الفعاليات">Event Schedule</button> <button class="chat-quick-btn"
+                                onclick="askQuestion('speakers')" data-en="Speakers"
+                                data-ar="المتحدثون">Speakers</button> <button class="chat-quick-btn"
+                                onclick="askQuestion('venue')" data-en="Venue" data-ar="المكان">Venue</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-area"><input type="text" class="chat-input" id="chatInput"
+                        placeholder="Type your message..." data-en-placeholder="Type your message..."
+                        data-ar-placeholder="اكتب رسالتك..." onkeypress="handleChatKeypress(event)"> <button
+                        class="chat-send" onclick="sendMessage()" aria-label="Send Message">➤</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+window.onload = function() {
+    fetchVoteCounts();
+};
+
+function vote(category) {
+    fetch("{% url 'vote_submit' %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": getCookie('csrftoken'),
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: `category=${category}`
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            updateAllVoteDisplays(data.votes);
+        } else {
+            alert(data.message);
+        }
+    })
+    .catch(err => console.error("Error:", err));
+}
+
+// Fetch counts on page load
+function fetchVoteCounts() {
+    fetch("{% url 'vote_submit' %}")
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            updateAllVoteDisplays(data.votes);
+        }
+    })
+    .catch(err => console.error("Error:", err));
+}
+
+// Update all vote counts in HTML
+function updateAllVoteDisplays(votes) {
+    for (const category in votes) {
+        const voteSpan = document.querySelector(`[data-vote-count="${category}"]`);
+        if (voteSpan) {
+            voteSpan.textContent = `${votes[category]} votes`;
+        }
+    }
+}
+
+// CSRF helper
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+</script>
+    <script>
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.startsWith(name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("DOM Loaded"); // ✅ Check if JS runs
+
+            const btn = document.getElementById("newsletterBtn");
+            const form = document.getElementById("newsletterForm");
+            const msgBox = document.getElementById("newsletterMessage");
+
+            if (!btn || !form) {
+                console.error("Button or form not found!");
+                return;
+            }
+
+            btn.addEventListener("click", () => {
+                console.log("Button clicked"); // ✅ Debug click
+
+                let formData = new FormData(form);
+                console.log("FormData:", [...formData]); // ✅ Show form data
+
+                fetch("{% url 'newsletter_submit' %}", {
+                    method: "POST",
+                    body: formData,
+                    headers: {
+                        "X-CSRFToken": getCookie('csrftoken')
+                    }
+                })
+                    .then(res => {
+                        console.log("Response status:", res.status);
+                        return res.json();
+                    })
+                    .then(data => {
+                        console.log("Response JSON:", data); // ✅ Check API response
+
+                        if (data.success) {
+                            msgBox.innerHTML = `<p style="color: white;">${data.message}</p>`;
+                            form.reset();
+                        } else {
+                            msgBox.innerHTML = `<p style="color: red;">${data.message}</p>`;
+                        }
+                    })
+                    .catch(err => console.error("Fetch Error:", err));
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log("JS Loaded"); // Check if this prints
+
+            const btn = document.getElementById("newsletterBtn");
+            const form = document.getElementById("newsletterForm");
+            const msgBox = document.getElementById("newsletterMessage");
+
+            btn.addEventListener("click", () => {
+                console.log("Button clicked"); // Check if this prints
+
+                let formData = new FormData(form);
+
+                fetch("{% url 'newsletter_submit' %}", {
+                    method: "POST",
+                    body: formData,
+                    headers: { "X-CSRFToken": "{{ csrf_token }}" }
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log("API Response:", data); // Check API response
+
+                        if (data.success) {
+                            msgBox.innerHTML = `<p style="color: white;">${data.message}</p>`;
+                            form.reset();
+                        } else {
+                            msgBox.innerHTML = `<p style="color: red;">${data.message}</p>`;
+                        }
+                    })
+                    .catch(err => console.error("Error:", err));
+            });
+        });
+    </script>
+
+    <script>
+        const defaultConfig = {
+            hero_title: "AWEGS 2025",
+            hero_tagline: "African Women Entrepreneurs Global Summit",
+            hero_description: "Towards a Smart and Green Africa, Led by Innovative Women Shaping the Knowledge Economy from Dubai to the World.",
+            primary_color: "#008A5C",
+            accent_color: "#C9A74A",
+            font_family: "Open Sans",
+            font_size: 16
+        };
+
+        let currentLang = 'en';
+        const voteCounts = {
+            innovation: 0,
+            sustainability: 0,
+            business: 0
+        };
+        const hasVoted = {
+            innovation: false,
+            sustainability: false,
+            business: false
+        };
+
+        async function onConfigChange(config) {
+            const titleEl = document.querySelector('.hero-title');
+            const taglineEl = document.querySelector('.hero-tagline');
+            const descEl = document.querySelector('.hero-description');
+
+            if (titleEl && config.hero_title !== undefined) {
+                titleEl.setAttribute('data-en', config.hero_title);
+                if (currentLang === 'en') titleEl.textContent = config.hero_title;
+            }
+
+            if (taglineEl && config.hero_tagline !== undefined) {
+                taglineEl.setAttribute('data-en', config.hero_tagline);
+                if (currentLang === 'en') taglineEl.textContent = config.hero_tagline;
+            }
+
+            if (descEl && config.hero_description !== undefined) {
+                descEl.setAttribute('data-en', config.hero_description);
+                if (currentLang === 'en') descEl.textContent = config.hero_description;
+            }
+
+            const customFont = config.font_family || defaultConfig.font_family;
+            const baseFontStack = 'Arial, sans-serif';
+            document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+
+            const baseSize = config.font_size || defaultConfig.font_size;
+            document.body.style.fontSize = `${baseSize}px`;
+        }
+
+        function mapToCapabilities(config) {
+            return {
+                recolorables: [
+                    {
+                        get: () => config.primary_color || defaultConfig.primary_color,
+                        set: (value) => {
+                            config.primary_color = value;
+                            window.elementSdk.setConfig({ primary_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.accent_color || defaultConfig.accent_color,
+                        set: (value) => {
+                            config.accent_color = value;
+                            window.elementSdk.setConfig({ accent_color: value });
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: {
+                    get: () => config.font_family || defaultConfig.font_family,
+                    set: (value) => {
+                        config.font_family = value;
+                        window.elementSdk.setConfig({ font_family: value });
+                    }
+                },
+                fontSizeable: {
+                    get: () => config.font_size || defaultConfig.font_size,
+                    set: (value) => {
+                        config.font_size = value;
+                        window.elementSdk.setConfig({ font_size: value });
+                    }
+                }
+            };
+        }
+
+        function mapToEditPanelValues(config) {
+            return new Map([
+                ["hero_title", config.hero_title || defaultConfig.hero_title],
+                ["hero_tagline", config.hero_tagline || defaultConfig.hero_tagline],
+                ["hero_description", config.hero_description || defaultConfig.hero_description]
+            ]);
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities,
+                mapToEditPanelValues
+            });
+        }
+
+        // Countdown Timer
+        function updateCountdown() {
+            const eventDate = new Date('December 6, 2025 09:00:00 GMT+0400').getTime();
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance > 0) {
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+ 
+        // Newsletter
+        function handleNewsletter(event) {
+            event.preventDefault();
+            const form = event.target;
+            const input = form.querySelector('input[type="email"]');
+            const messageEl = document.getElementById('newsletterMessage');
+            const submitBtn = form.querySelector('.newsletter-submit');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = currentLang === 'en' ? 'Subscribing...' : 'جاري الاشتراك...';
+
+            setTimeout(() => {
+                messageEl.className = 'newsletter-message success';
+                messageEl.textContent = currentLang === 'en'
+                    ? `Thank you for subscribing! We'll keep you updated about AWEGS 2025.`
+                    : `شكراً للاشتراك! سنبقيك على اطلاع بآخر أخبار AWEGS 2025.`;
+
+                input.value = '';
+                submitBtn.disabled = false;
+                submitBtn.textContent = currentLang === 'en' ? 'Subscribe' : 'اشترك';
+
+                setTimeout(() => {
+                    messageEl.className = 'newsletter-message';
+                }, 5000);
+            }, 1000);
+        }
+
+        // Chat Assistant
+        function toggleChat() {
+            const chatWindow = document.getElementById('chatWindow');
+            const icon = document.getElementById('chatButtonIcon');
+            chatWindow.classList.toggle('active');
+            icon.textContent = chatWindow.classList.contains('active') ? '✕' : '💬';
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            if (!message) return;
+
+            addChatMessage(message, 'user');
+            input.value = '';
+
+            setTimeout(() => {
+                const response = getAminaResponse(message);
+                addChatMessage(response, 'assistant');
+            }, 800);
+        }
+
+        function handleChatKeypress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function askQuestion(topic) {
+            const questions = {
+                registration: currentLang === 'en' ? 'How do I register?' : 'كيف يمكنني التسجيل؟',
+                schedule: currentLang === 'en' ? 'What is the event schedule?' : 'ما هو جدول الفعاليات؟',
+                speakers: currentLang === 'en' ? 'Who are the speakers?' : 'من هم المتحدثون؟',
+                venue: currentLang === 'en' ? 'Where is the venue?' : 'أين يقام الحدث؟'
+            };
+
+            const input = document.getElementById('chatInput');
+            input.value = questions[topic];
+            sendMessage();
+        }
+
+        function addChatMessage(text, type) {
+            const messagesContainer = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${type}`;
+            messageDiv.textContent = text;
+            messagesContainer.appendChild(messageDiv);
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        function getAminaResponse(message) {
+            const lower = message.toLowerCase();
+
+            if (lower.includes('register') || lower.includes('سجل') || lower.includes('تسجيل')) {
+                return currentLang === 'en'
+                    ? 'You can register by clicking the "Register Now" button on the homepage or emailing info@awegs.org. We offer delegate, exhibitor, and sponsor packages!'
+                    : 'يمكنك التسجيل بالنقر على زر "سجل الآن" في الصفحة الرئيسية أو عبر البريد الإلكتروني info@awegs.org. نقدم باقات للمندوبين والعارضين والرعاة!';
+            }
+
+            if (lower.includes('schedule') || lower.includes('when') || lower.includes('جدول') || lower.includes('متى')) {
+                return currentLang === 'en'
+                    ? 'AWEGS 2025 takes place on December 6, 2025, at Dubai World Trade Centre. The day includes opening ceremony, policy dialogues, innovation panels, B2B matchmaking, exhibition, and awards gala!'
+                    : 'تقام AWEGS 2025 في 6 ديسمبر 2025 في مركز دبي التجاري العالمي. يتضمن اليوم حفل افتتاح وحوارات سياسية ولجان ابتكار ومواءمة تجارية ومعرض وحفل جوائز!';
+            }
+
+            if (lower.includes('speaker') || lower.includes('متحدث')) {
+                return currentLang === 'en'
+                    ? 'We have an incredible lineup! Featured speakers include Mr. Mustafa Ali Amshan (Chairman), ministers, ambassadors, investors, and innovators from over 35 African countries. Check the Speakers section for details!'
+                    : 'لدينا تشكيلة رائعة! المتحدثون المميزون يشملون السيد مصطفى علي عمشان (الرئيس) ووزراء وسفراء ومستثمرين ومبتكرين من أكثر من 35 دولة أفريقية. تحقق من قسم المتحدثين للتفاصيل!';
+            }
+
+            if (lower.includes('venue') || lower.includes('location') || lower.includes('where') || lower.includes('مكان') || lower.includes('أين')) {
+                return currentLang === 'en'
+                    ? 'The summit is hosted at Dubai World Trade Centre in Dubai, UAE. It\'s one of the most prestigious venues in the region, easily accessible and equipped with world-class facilities!'
+                    : 'تقام القمة في مركز دبي التجاري العالمي في دبي، الإمارات. إنه أحد أرقى الأماكن في المنطقة، يسهل الوصول إليه ومجهز بمرافق عالمية المستوى!';
+            }
+
+            if (lower.includes('theme') || lower.includes('محور') || lower.includes('موضوع')) {
+                return currentLang === 'en'
+                    ? 'We have 5 core themes: 1) AI & Knowledge Economy, 2) Sustainability & Clean Energy, 3) Organic Products & Food Security, 4) Trade & Investment Partnerships, 5) Women\'s Leadership & Innovation!'
+                    : 'لدينا 5 محاور أساسية: 1) الذكاء الاصطناعي واقتصاد المعرفة، 2) الاستدامة والطاقة النظيفة، 3) المنتجات العضوية والأمن الغذائي، 4) شراكات التجارة والاستثمار، 5) قيادة المرأة والابتكار!';
+            }
+
+            if (lower.includes('partner') || lower.includes('sponsor') || lower.includes('شريك') || lower.includes('رعاية')) {
+                return currentLang === 'en'
+                    ? 'We welcome partnerships! Email info@awegs.org with "Partnership Inquiry" to learn about sponsorship packages and collaboration opportunities. Let\'s build Africa\'s future together!'
+                    : 'نرحب بالشراكات! أرسل بريداً إلكترونياً إلى info@awegs.org مع "استفسار عن الشراكة" لمعرفة المزيد عن باقات الرعاية وفرص التعاون. لنبني مستقبل أفريقيا معاً!';
+            }
+
+            if (lower.includes('vote') || lower.includes('award') || lower.includes('تصويت') || lower.includes('جائزة')) {
+                return currentLang === 'en'
+                    ? 'You can vote for the AWEGS Awards in the Digital Awards Voting section! Categories include Innovation Award, Sustainability Award, and Business Excellence Award. Your vote matters!'
+                    : 'يمكنك التصويت لجوائز AWEGS في قسم التصويت الرقمي! الفئات تشمل جائزة الابتكار وجائزة الاستدامة وجائزة التميز التجاري. صوتك مهم!';
+            }
+
+            return currentLang === 'en'
+                ? 'I\'m here to help with any questions about AWEGS 2025! You can ask about registration, schedule, speakers, venue, themes, partnerships, or awards. What would you like to know?'
+                : 'أنا هنا للمساعدة في أي أسئلة حول AWEGS 2025! يمكنك السؤال عن التسجيل أو الجدول أو المتحدثين أو المكان أو المحاور أو الشراكات أو الجوائز. ماذا تريد أن تعرف؟';
+        }
+
+        // Video Player
+        function playVideo() {
+            const placeholder = document.querySelector('.video-placeholder');
+            const message = currentLang === 'en'
+                ? 'Video player will be the promo video.'
+                : 'سيتم دمج مشغل الفيديو هنا. اتصل بـ IBC Dubai للفيديو الترويجي.';
+
+            const msgDiv = document.createElement('div');
+            msgDiv.style.cssText = 'position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); background: rgba(0, 138, 92, 0.95); color: white; padding: 15px 30px; border-radius: 10px; font-size: 16px; white-space: nowrap; animation: messageSlide 0.3s ease;';
+            msgDiv.textContent = message;
+            placeholder.style.position = 'relative';
+            placeholder.appendChild(msgDiv);
+
+            setTimeout(() => msgDiv.remove(), 3000);
+        }
+
+        function toggleMenu() {
+            const navRight = document.querySelector('.nav-right');
+            const navToggle = document.querySelector('.nav-toggle');
+            navRight.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navRight = document.querySelector('.nav-right');
+            const navToggle = document.querySelector('.nav-toggle');
+            navRight.classList.remove('active');
+            navToggle.classList.remove('active');
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+
+            if (currentLang === 'ar') {
+                document.body.classList.add('rtl');
+            } else {
+                document.body.classList.remove('rtl');
+            }
+
+            document.querySelectorAll('[data-en]').forEach(element => {
+                const text = element.getAttribute('data-' + currentLang);
+                if (text) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = text;
+                    } else {
+                        element.textContent = text;
+                    }
+                }
+            });
+
+            document.querySelectorAll('[data-en-placeholder]').forEach(element => {
+                const placeholder = element.getAttribute('data-' + currentLang + '-placeholder');
+                if (placeholder) {
+                    element.placeholder = placeholder;
+                }
+            });
+
+            // Update chat messages
+            document.querySelectorAll('.chat-message[data-en-text]').forEach(element => {
+                const text = element.getAttribute('data-' + currentLang + '-text');
+                if (text) {
+                    const quickOptions = element.querySelector('.chat-quick-options');
+                    element.textContent = text;
+                    if (quickOptions) {
+                        element.appendChild(quickOptions);
+                    }
+                }
+            });
+
+            // Update vote counts
+            Object.keys(voteCounts).forEach(category => {
+                updateVoteDisplay(category);
+            });
+
+            // Update voted buttons
+            Object.keys(hasVoted).forEach(category => {
+                if (hasVoted[category]) {
+                    const cards = document.querySelectorAll('.voting-card');
+                    cards.forEach(card => {
+                        const btn = card.querySelector('.vote-btn');
+                        if (btn && btn.disabled) {
+                            btn.textContent = currentLang === 'en' ? 'Voted ✓' : 'تم التصويت ✓';
+                        }
+                    });
+                }
+            });
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                closeMenu();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        document.addEventListener('click', function (e) {
+            const navRight = document.querySelector('.nav-right');
+            const navToggle = document.querySelector('.nav-toggle');
+            const chatWindow = document.getElementById('chatWindow');
+            const chatButton = document.querySelector('.chat-button');
+
+            if (navRight.classList.contains('active') &&
+                !navRight.contains(e.target) &&
+                !navToggle.contains(e.target)) {
+                closeMenu();
+            }
+
+            if (chatWindow.classList.contains('active') &&
+                !chatWindow.contains(e.target) &&
+                !chatButton.contains(e.target)) {
+                toggleChat();
+            }
+        });
+    </script>
+
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9a3a23b4b5d2e70c',t:'MTc2NDAwMDIzOS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
